@@ -1,28 +1,32 @@
-void saveTheFlowers(){
-    turnLeft();
-    while(!rightIsClear()){
-        moveForward();
+void saveTheFlowers()
+{
+    while(!frontIsClear()){
+        while(!frontIsClear()){
+            turnLeft();
+            while(!rightIsClear()){
+                moveForward();
+            }
+            turnRight();
+        }
+        if(beeperAhead()){
+            moveForward();
+            pickBeeper();
+        }
+        else if(!beeperAhead() && frontIsClear()){
+            moveForward();
+        }
     }
-    repeat(4){
-        turnRight();
-        moveForward();
-        pickBeeper();
-        turnLeft();
-        moveForward();
-    }
-    turnRight();
-    moveForward();
-    dropBeeper();
-    moveForward();
-    repeat(3){
-        turnRight();
-        moveForward();
+    while(frontIsClear()&&!rightIsClear()){
         dropBeeper();
+        moveForward();
+        turnRight();
+        if(frontIsClear()){
+            moveForward();
+        }
+        while(!rightIsClear()&&frontIsClear()){
+            moveForward();
+        }
         turnLeft();
-        moveForward();
     }
-    turnRight();
-    while(frontIsClear()){
-        moveForward();
-    }
+    
 }
